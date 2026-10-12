@@ -1,0 +1,321 @@
+
+<!-- Filtri e gradienti condivisi da tutti i disegni SVG -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="f-glow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="f-blur" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="f-blur-forte" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="f-ombra" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
+    <linearGradient id="g-metallo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e5ecef"/><stop offset=".5" stop-color="#a9b5bb"/><stop offset="1" stop-color="#6f7c82"/></linearGradient>
+    <linearGradient id="g-pcb-blu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d56b8"/><stop offset="1" stop-color="#123b85"/></linearGradient>
+    <linearGradient id="g-pcb-verde" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b7a45"/><stop offset="1" stop-color="#0f5530"/></linearGradient>
+    <linearGradient id="g-pcb-rosso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8262c"/><stop offset="1" stop-color="#7f1418"/></linearGradient>
+    <radialGradient id="g-manopola" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#4a5560"/><stop offset="1" stop-color="#14191d"/></radialGradient>
+  </defs>
+</svg>
+
+<div class="contenitore">
+
+  <header class="testata">
+    <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+      <rect x="10" y="10" width="28" height="28" rx="4" fill="#0e2a22" stroke="#3dff9a" stroke-width="2"/>
+      <g stroke="#3dff9a" stroke-width="2" stroke-linecap="round"><path d="M17 4v6M24 4v6M31 4v6M17 38v6M24 38v6M31 38v6M4 17h6M4 24h6M4 31h6M38 17h6M38 24h6M38 31h6"/></g>
+      <circle cx="24" cy="24" r="6" fill="#22d3ee"/>
+    </svg>
+    <div>
+      <h1>Arduino<span>Lab</span></h1>
+      <p>Il tuo laboratorio interattivo per imparare Arduino</p>
+    </div>
+  </header>
+
+  <nav class="schede" role="tablist" aria-label="Strumenti">
+    <button class="scheda-btn" role="tab" id="tab-led" data-scheda="led" aria-controls="pannello-led" aria-selected="true">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 9a4 4 0 0 1 8 0v5H6z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 14v4M12 14v3" stroke="currentColor" stroke-width="1.6"/></svg>Simulatore LED</button>
+    <button class="scheda-btn" role="tab" id="tab-componenti" data-scheda="componenti" aria-controls="pannello-componenti" aria-selected="false" tabindex="-1">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="4" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 1v3M13 1v3M7 16v3M13 16v3M1 7h3M1 13h3M16 7h3M16 13h3" stroke="currentColor" stroke-width="1.6"/></svg>Componenti</button>
+    <button class="scheda-btn" role="tab" id="tab-logica" data-scheda="logica" aria-controls="pannello-logica" aria-selected="false" tabindex="-1">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4h5l3 6-3 6H3M12 10h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Logica nel codice</button>
+    <button class="scheda-btn" role="tab" id="tab-resistenze" data-scheda="resistenze" aria-controls="pannello-resistenze" aria-selected="false" tabindex="-1">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M1 10h3l1.5-4 3 8 3-8 3 8 1.5-4h3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Calcolatore resistenze</button>
+    <button class="scheda-btn" role="tab" id="tab-quiz" data-scheda="quiz" aria-controls="pannello-quiz" aria-selected="false" tabindex="-1">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 7.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5V12M10 14.5v.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Quiz</button>
+  </nav>
+
+  <!-- =========================================================
+       1. SIMULATORE LED
+       ========================================================= -->
+  <section class="pannello-scheda attivo" id="pannello-led" role="tabpanel" aria-labelledby="tab-led">
+    <div class="griglia-2">
+      <div class="card">
+        <h2>Banco di prova</h2>
+        <svg class="scheda-svg" id="svgScheda" viewBox="0 0 540 320" role="img" aria-label="Scheda Arduino con un LED collegato al pin 9 tramite una resistenza da 220 ohm">
+          <defs>
+            <radialGradient id="gradAlone">
+              <stop offset="0%" class="stop-led" stop-opacity=".85"/>
+              <stop offset="30%" class="stop-led" stop-opacity=".35"/>
+              <stop offset="65%" class="stop-led" stop-opacity=".08"/>
+              <stop offset="100%" class="stop-led" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="gradCorpo" cx="50%" cy="60%" r="65%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="35%" class="stop-led"/>
+              <stop offset="100%" class="stop-led-scuro"/>
+            </radialGradient>
+            <linearGradient id="gradScheda" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0f7d8c"/>
+              <stop offset="1" stop-color="#095862"/>
+            </linearGradient>
+          </defs>
+          <g id="arduino">
+            <rect x="20" y="62" width="320" height="230" rx="14" fill="url(#gradScheda)" stroke="#0b4c55" stroke-width="2"/>
+            <g fill="#06343a" stroke="#c9d6d9" stroke-width="1.5">
+              <circle cx="40" cy="80" r="5"/><circle cx="322" cy="80" r="5"/><circle cx="40" cy="274" r="5"/><circle cx="322" cy="274" r="5"/>
+            </g>
+            <rect x="4" y="100" width="58" height="46" rx="3" fill="#b9c3c8" stroke="#7d8a90"/>
+            <rect x="10" y="108" width="40" height="30" rx="2" fill="#8e9aa0"/>
+            <rect x="6" y="222" width="60" height="42" rx="4" fill="#15191c" stroke="#2c3337"/>
+            <circle cx="32" cy="243" r="9" fill="#2a3033"/>
+            <rect x="98" y="70" width="216" height="16" rx="2" fill="#141414"/>
+            <g id="pinDigitali"></g>
+            <text x="206" y="112" text-anchor="middle" font-family="monospace" font-size="8" fill="#d8f3f6" letter-spacing="1">DIGITAL (PWM ~)</text>
+            <g>
+              <g stroke="#a7b2b6" stroke-width="2">
+                <path d="M180 196v-6M192 196v-6M204 196v-6M216 196v-6M228 196v-6M240 196v-6M252 196v-6M264 196v-6M276 196v-6M288 196v-6"/>
+                <path d="M180 236v6M192 236v6M204 236v6M216 236v6M228 236v6M240 236v6M252 236v6M264 236v6M276 236v6M288 236v6"/>
+              </g>
+              <rect x="170" y="196" width="130" height="40" rx="3" fill="#1b1f22"/>
+              <circle cx="180" cy="216" r="3" fill="#2d3438"/>
+              <text x="240" y="220" text-anchor="middle" font-family="monospace" font-size="9" fill="#8a979c">ATMEGA328P</text>
+            </g>
+            <text x="200" y="160" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="22" fill="#e9fbfd" letter-spacing="2">ARDUINO</text>
+            <text x="200" y="178" text-anchor="middle" font-family="monospace" font-size="11" fill="#bfeef3" letter-spacing="4">UNO</text>
+            <rect x="290" y="138" width="8" height="5" rx="1" fill="#3dff9a" style="filter: drop-shadow(0 0 4px #3dff9a)"/>
+            <text x="294" y="154" text-anchor="middle" font-family="monospace" font-size="7" fill="#d8f3f6">ON</text>
+            <rect x="120" y="270" width="88" height="14" rx="2" fill="#141414"/>
+            <rect x="222" y="270" width="88" height="14" rx="2" fill="#141414"/>
+            <text x="164" y="264" text-anchor="middle" font-family="monospace" font-size="7" fill="#d8f3f6">POWER</text>
+            <text x="266" y="264" text-anchor="middle" font-family="monospace" font-size="7" fill="#d8f3f6">ANALOG IN</text>
+          </g>
+          <path d="M178 78 V38 H400 V86" fill="none" stroke="#ff8a3d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M400 134 V256 H444 V240" fill="none" stroke="#ff8a3d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M456 232 V276 H506 V20 H108 V78" fill="none" stroke="#2a2f33" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M456 232 V276 H506 V20 H108 V78" fill="none" stroke="#5c666c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+          <g>
+            <path class="flusso" stroke="#fff3c4" d="M178 78 V38 H400 V86"/>
+            <path class="flusso" stroke="#fff3c4" d="M400 134 V256 H444 V240"/>
+            <path class="flusso" stroke="#9ad7ff" d="M456 232 V276 H506 V20 H108 V78"/>
+          </g>
+          <g>
+            <rect x="390" y="84" width="20" height="52" rx="8" fill="#e6cf9f" stroke="#b49a68"/>
+            <rect x="390" y="93" width="20" height="5" fill="#e02424"/>
+            <rect x="390" y="102" width="20" height="5" fill="#e02424"/>
+            <rect x="390" y="111" width="20" height="5" fill="#7b3f00"/>
+            <rect x="390" y="124" width="20" height="4" fill="#d4af37"/>
+            <text x="418" y="114" font-family="monospace" font-size="10" fill="#9fb3bf">220Ω</text>
+          </g>
+          <circle id="ledLuceScheda" cx="450" cy="172" r="120" fill="url(#gradAlone)" opacity="0"/>
+          <g id="ledAloneGruppo"><circle id="ledAlone" cx="450" cy="172" r="62" class="fill-led" filter="url(#f-blur-forte)" opacity="0"/></g>
+          <line x1="444" y1="204" x2="444" y2="240" stroke="#c3ccd1" stroke-width="2.5"/>
+          <line x1="456" y1="204" x2="456" y2="232" stroke="#c3ccd1" stroke-width="2.5"/>
+          <text x="432" y="236" font-family="monospace" font-size="10" fill="#ff8a3d" text-anchor="end">+</text>
+          <text x="468" y="230" font-family="monospace" font-size="10" fill="#9fb3bf">−</text>
+          <path d="M434 202 V170 A16 16 0 0 1 466 170 V202 Z" class="fill-led-scuro" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+          <path id="ledAcceso" d="M434 202 V170 A16 16 0 0 1 466 170 V202 Z" fill="url(#gradCorpo)" opacity="0"/>
+          <ellipse id="ledNucleo" cx="450" cy="186" rx="9" ry="7" fill="#fff" filter="url(#f-blur)" opacity="0"/>
+          <path d="M444 202 V188 M456 202 V192 H450" stroke="rgba(200,210,215,.45)" stroke-width="1.5" fill="none"/>
+          <rect x="430" y="200" width="40" height="6" rx="1.5" class="fill-led-scuro" stroke="rgba(255,255,255,.2)"/>
+          <path d="M440 172 A10 10 0 0 1 448 160" stroke="rgba(255,255,255,.55)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <text x="450" y="300" text-anchor="middle" font-family="monospace" font-size="10" fill="#7d93a1">LED · pin 9 → 220Ω → GND</text>
+        </svg>
+
+        <div class="controlli">
+          <div class="riga-controlli">
+            <button class="btn btn-primario" id="btnAccendi" aria-pressed="false">Accendi</button>
+            <label class="interruttore"><input type="checkbox" id="chkBlink"><span class="binario"></span>Modalità Blink</label>
+            <div class="colori-led" role="group" aria-label="Colore del LED" id="coloriLed"></div>
+          </div>
+          <div class="campo">
+            <div class="campo-testa"><label for="rngLuminosita">Luminosità (analogWrite 0–255)</label><span class="valore-mono" id="valLuminosita">255</span></div>
+            <input type="range" id="rngLuminosita" min="0" max="255" value="255">
+          </div>
+          <div class="campo">
+            <div class="campo-testa"><label for="rngIntervallo">Intervallo Blink (delay)</label><span class="valore-mono"><span id="valIntervallo">500</span> ms</span></div>
+            <input type="range" id="rngIntervallo" min="50" max="2000" step="10" value="500" disabled>
+          </div>
+          <div class="cruscotto" aria-live="polite">
+            <div class="misura"><small>Pin 9</small><b id="mStato">LOW</b></div>
+            <div class="misura"><small>Valore</small><b id="mValore">0</b></div>
+            <div class="misura"><small>Duty cycle</small><b id="mDuty">0%</b></div>
+            <div class="misura"><small>V media</small><b id="mTensione">0,00 V</b></div>
+          </div>
+          <div>
+            <svg class="onda-svg" viewBox="0 0 320 74" preserveAspectRatio="none" aria-label="Forma d'onda PWM sul pin 9">
+              <g stroke="#11222c" stroke-width="1"><line x1="0" y1="14" x2="320" y2="14"/><line x1="0" y1="60" x2="320" y2="60"/></g>
+              <path id="ondaTraccia" fill="none" stroke="#22d3ee" stroke-width="2" style="filter: drop-shadow(0 0 3px #22d3ee)"/>
+              <text x="4" y="11" font-family="monospace" font-size="8" fill="#4e6a78">5V</text>
+              <text x="4" y="71" font-family="monospace" font-size="8" fill="#4e6a78">0V</text>
+            </svg>
+            <p class="didascalia">Oscilloscopio: il PWM accende e spegne il pin velocemente (circa 490 Hz sul pin 9). Più è lunga la parte alta, più il LED ci sembra luminoso.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="codice-testa">
+          <h2>Codice equivalente</h2>
+          <button class="btn btn-piccolo" data-copia="codice">Copia codice</button>
+        </div>
+        <div class="editor">
+          <div class="editor-barra"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>sketch_led.ino</span></div>
+          <pre class="codice" id="codice" aria-live="polite"></pre>
+        </div>
+        <div class="spiegazione" id="spiegazioneCodice"></div>
+        <div style="margin-top:14px"><button class="btn btn-ai" data-chiedi="Spiegami cosa sta succedendo nel simulatore LED adesso.">Chiedi al tutor</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       2. COMPONENTI
+       ========================================================= -->
+  <section class="pannello-scheda" id="pannello-componenti" role="tabpanel" aria-labelledby="tab-componenti">
+    <div class="libreria">
+      <aside class="card elenco" aria-label="Elenco dei componenti">
+        <div class="cerca"><input type="text" id="cercaComponente" placeholder="Cerca un componente o una funzione…" aria-label="Cerca un componente o una funzione"></div>
+        <div id="elencoComponenti"></div>
+      </aside>
+      <div class="dettaglio" id="dettaglioComponente"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       3. LOGICA NEL CODICE
+       ========================================================= -->
+  <section class="pannello-scheda" id="pannello-logica" role="tabpanel" aria-labelledby="tab-logica">
+    <div class="scenari" id="elencoScenari" role="group" aria-label="Argomenti di logica"></div>
+    <div id="dettaglioScenario"></div>
+  </section>
+
+  <!-- =========================================================
+       4. CALCOLATORE DI RESISTENZE
+       ========================================================= -->
+  <section class="pannello-scheda" id="pannello-resistenze" role="tabpanel" aria-labelledby="tab-resistenze">
+    <div class="griglia-2">
+      <div class="card">
+        <h2>Dati del circuito</h2>
+        <div class="campi-resistenza">
+          <div class="campo">
+            <label for="inVs">Tensione di alimentazione (Vs)</label>
+            <div class="campo-unita"><input type="number" id="inVs" value="5" min="0" step="0.1" inputmode="decimal"><span class="unita">V</span></div>
+          </div>
+          <div class="campo">
+            <label for="selLed">Colore del LED (imposta la tensione tipica)</label>
+            <select id="selLed">
+              <option value="2.0">Rosso — 2,0 V</option>
+              <option value="2.1">Giallo / Arancione — 2,1 V</option>
+              <option value="2.2">Verde — 2,2 V</option>
+              <option value="3.2">Blu — 3,2 V</option>
+              <option value="3.2">Bianco — 3,2 V</option>
+              <option value="custom">Personalizzato</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="inVf">Tensione del LED (Vf)</label>
+            <div class="campo-unita"><input type="number" id="inVf" value="2" min="0" step="0.1" inputmode="decimal"><span class="unita">V</span></div>
+          </div>
+          <div class="campo">
+            <label for="inMa">Corrente desiderata (I)</label>
+            <div class="campo-unita"><input type="number" id="inMa" value="20" min="0" step="1" inputmode="decimal"><span class="unita">mA</span></div>
+          </div>
+        </div>
+        <div class="avviso" id="avvisoRes" role="status"></div>
+      </div>
+
+      <div class="card">
+        <h2>Risultato</h2>
+        <div class="risultato-grande">
+          <div class="misura"><small>Valore calcolato</small><b id="rCalcolata">150 Ω</b></div>
+          <div class="misura evidenza"><small>Valore commerciale (E12)</small><b id="rE12">150 Ω</b></div>
+        </div>
+        <svg class="svg-resistenza" viewBox="0 0 400 110" role="img" aria-label="Resistenza con bande colorate" id="svgResistenza">
+          <defs>
+            <linearGradient id="gradResCorpo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3e2bb"/><stop offset=".45" stop-color="#e3c895"/><stop offset="1" stop-color="#b8996a"/></linearGradient>
+            <linearGradient id="gradLucido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient>
+            <clipPath id="clipRes"><path d="M110 30 Q110 22 122 22 H150 Q160 28 170 28 H230 Q240 28 250 22 H278 Q290 22 290 30 V80 Q290 88 278 88 H250 Q240 82 230 82 H170 Q160 82 150 88 H122 Q110 88 110 80 Z"/></clipPath>
+          </defs>
+          <line x1="10" y1="55" x2="112" y2="55" stroke="#c3ccd1" stroke-width="4" stroke-linecap="round"/>
+          <line x1="288" y1="55" x2="390" y2="55" stroke="#c3ccd1" stroke-width="4" stroke-linecap="round"/>
+          <g clip-path="url(#clipRes)">
+            <rect x="100" y="15" width="200" height="80" fill="url(#gradResCorpo)"/>
+            <g id="bandeResistenza">
+              <rect x="128" y="15" width="14" height="80"/><rect x="166" y="15" width="14" height="80"/>
+              <rect x="198" y="15" width="14" height="80"/><rect x="258" y="15" width="12" height="80"/>
+            </g>
+            <rect x="100" y="15" width="200" height="80" fill="url(#gradLucido)"/>
+          </g>
+        </svg>
+        <div class="legenda-bande" id="legendaBande"></div>
+        <div class="cruscotto" style="margin-top:12px">
+          <div class="misura"><small>I reale</small><b id="iReale">20,0 mA</b></div>
+          <div class="misura"><small>Caduta su R</small><b id="vR">3,00 V</b></div>
+          <div class="misura"><small>Potenza su R</small><b id="pR">60 mW</b></div>
+          <div class="misura"><small>Potenza min.</small><b id="pMin">0,125 W</b></div>
+        </div>
+      </div>
+
+      <div class="card spiega" style="grid-column: 1 / -1">
+        <h2>Come si calcola?</h2>
+        <div class="formula">R = <span class="frazione"><span>Vs − Vf</span><span>I</span></span></div>
+        <p>È la <strong>legge di Ohm</strong> (<code>V = R × I</code>) girata per trovare la resistenza. Il ragionamento è semplice:</p>
+        <ul>
+          <li>L’alimentazione dà <strong>Vs</strong> volt (5 V per Arduino Uno).</li>
+          <li>Il LED “si prende” una parte fissa della tensione, chiamata <strong>Vf</strong> (tensione diretta): circa 2 V per un LED rosso, circa 3 V per uno blu o bianco.</li>
+          <li>Quello che avanza (<strong>Vs − Vf</strong>) deve cadere sulla resistenza.</li>
+          <li>Dividendo questa tensione per la corrente che vogliamo (<strong>in ampere</strong>, quindi 20 mA = 0,020 A) otteniamo i <strong>ohm</strong> necessari.</li>
+        </ul>
+        <div class="esempio-calcolo" id="esempioCalcolo"></div>
+        <p style="margin-top:12px">Le resistenze non si trovano in ogni valore: si vendono in <strong>serie standard</strong>. La serie <strong>E12</strong> ha 12 valori per decade (10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82 e i loro multipli). Nel dubbio scegli il valore <em>più alto</em>: il LED sarà un po’ meno luminoso ma più protetto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       5. QUIZ
+       ========================================================= -->
+  <section class="pannello-scheda" id="pannello-quiz" role="tabpanel" aria-labelledby="tab-quiz">
+    <div class="card quiz" id="quiz"></div>
+  </section>
+
+  <footer>Arduino Lab · HTML, CSS e JavaScript in un solo file · Le simulazioni funzionano anche offline</footer>
+</div>
+
+<!-- =========================================================
+     TUTOR AI
+     ========================================================= -->
+<button class="btn btn-ai tutor-apri" id="btnTutor" aria-controls="tutor" aria-expanded="false">
+  <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><rect x="3" y="5" width="14" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="7.5" cy="10.5" r="1.3" fill="currentColor"/><circle cx="12.5" cy="10.5" r="1.3" fill="currentColor"/><path d="M10 2v3" stroke="currentColor" stroke-width="1.6"/></svg>
+  Tutor AI
+</button>
+<div class="velo" id="veloTutor"></div>
+<aside class="tutor" id="tutor" aria-label="Tutor AI" aria-hidden="true">
+  <div class="tutor-testa">
+    <h2>Tutor AI</h2>
+    <span class="stato-ai offline" id="statoAi">Offline</span>
+    <button class="btn btn-piccolo" id="btnChiudiTutor" aria-label="Chiudi il tutor">✕</button>
+  </div>
+  <div class="tutor-opzioni" id="opzioniTutor" hidden>
+    <label for="selVelocita">Risposte</label>
+    <select id="selVelocita">
+      <option value="quick">Veloci</option>
+      <option value="default">Approfondite</option>
+    </select>
+    <button class="btn btn-piccolo" id="btnNuovaChat" style="margin-left:auto">Nuova chat</button>
+  </div>
+  <div class="tutor-messaggi" id="tutorMessaggi" aria-live="polite"></div>
+  <div class="tutor-suggerimenti" id="tutorSuggerimenti"></div>
+  <form class="tutor-form" id="tutorForm">
+    <textarea id="tutorInput" placeholder="Chiedi qualcosa o dai un comando (es. “servo a 45 gradi”)" aria-label="Messaggio per il tutor"></textarea>
+    <button class="btn btn-primario" id="btnInvia" type="submit">Invia</button>
+    <button class="btn" id="btnStop" type="button" hidden>Stop</button>
+  </form>
+</aside>
