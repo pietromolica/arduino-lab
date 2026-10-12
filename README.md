@@ -3,7 +3,7 @@
 **Il laboratorio interattivo per imparare Arduino, direttamente nel browser.**
 Niente da installare, niente scheda da comprare per iniziare: apri la pagina e sperimenta.
 
-**[▶ Prova Arduino Lab](https://TUO-UTENTE.github.io/arduino-lab/)**
+**[▶ Prova Arduino Lab](https://pietromolica.github.io/arduino-lab/)**
 
 ![Simulatore LED con il codice Arduino equivalente](immagini/simulatore-led.jpg)
 
